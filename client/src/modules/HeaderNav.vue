@@ -2,17 +2,13 @@
 
 <script setup>
 import { ref, computed } from 'vue'
-const isDark = ref(false)
+import { useThemeStore } from '@/store/theme.js'
 
+const themeStore = useThemeStore()
+const isDark = computed(() => themeStore.isDark)
 
 function toggleTheme() {
-  if (isDark.value) {
-    isDark.value = !isDark.value
-    window.localStorage.setItem('theme', 'dark')
-  } else {
-    window.localStorage.setItem('theme', 'cupcake')
-    isDark.value = !isDark.value
-  }
+  themeStore.swapTheme()
 }
 </script>
 
@@ -30,7 +26,7 @@ function toggleTheme() {
     <div class="navbar-end">
       <label class="swap swap-rotate">
         <!-- this hidden checkbox controls the state -->
-        <input type="checkbox" @change="toggleTheme" :checked="isDark" />
+        <input type="checkbox" @change="toggleTheme" :checked="!isDark" />
 
         <!-- sun icon -->
         <svg class="swap-on h-8 w-8 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">

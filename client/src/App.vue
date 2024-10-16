@@ -1,18 +1,20 @@
 <script setup>
 import { useRouter, } from 'vue-router'
-import { onMounted, ref, watchEffect } from 'vue'
+import { onMounted, ref, watchEffect, onBeforeMount, computed } from 'vue'
+import { useThemeStore } from './store/theme.js'
 const router = useRouter()
 
-const theme = ref(
-  window.localStorage.getItem('theme') || 'dark'
-)
-watchEffect(() => {
-  window.localStorage.setItem('theme', theme.value)
+const themeStore = useThemeStore()
+const theme = computed(() => themeStore.theme)
+onBeforeMount(() => {
+  const localTheme = window.localStorage.getItem('theme')
+  if (localTheme == 'dark' || localTheme == 'cupcake') {
+    themeStore.setTheme(localTheme)
+  } else {
+    themeStore.setTheme('cupcake')
+  }
 })
 
-onMounted(() => {
-  router.push('/')
-})
 </script>
 
 <template>
