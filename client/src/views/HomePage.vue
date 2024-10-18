@@ -40,7 +40,7 @@ onMounted(() => {
         :style="(isDark ? `background-image: linear-gradient(358deg,#7B869F 0%,#3A5067 100%` : 'background-image: linear-gradient(184deg,#F6C0B1 0%,#F4EFD9 100%)')"
         id="useCanvas">
       </div>
-      <div class="hero-content text-neutral-content text-center">
+      <div class="hero-content text-neutral-content text-center max-w-full">
         <div class="max-w-md flex flex-col items-center text-center">
 
           <!-- HeaderNav.Vue -->
@@ -54,11 +54,10 @@ onMounted(() => {
           </div>
 
           <!-- 文章列表 -->
-          <div class="article-list ">
+          <div class="article-list mt-10">
             <div class="article">
               <Article v-if="artReady" v-for="art in tempArticles" :artID="art.artID" :title="art.title"
-                :content="art.content" :author="art.author" :imgUrl="art.imgUrl" :date="art.date"
-                :summary="art.summary" />
+                :content="art.content" :author="art.author" :imgUrl="art.imgUrl" :date="art.date" :tags="art.tags" />
             </div>
           </div>
 

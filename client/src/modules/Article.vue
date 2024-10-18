@@ -12,11 +12,6 @@ defineProps({
     required: false,
     default: '无标题'
   },
-  summary: {
-    type: String,
-    required: false,
-    default: '无摘要'
-  },
   content: {
     type: String,
     required: false,
@@ -35,20 +30,31 @@ defineProps({
     type: String,
     required: false,
     default: 'https://img.daisyui.com/images/stock/photo-1635805737707-575885ab0820.webp' // tempImg
+  },
+  tags: {
+    type: Array,
+    required: false,
+    default: () => [{ text: "未分类", cololr: "default" }]
   }
 })
 
 </script>
 
 <template>
-  <div class="card card-side bg-base-100 shadow-xl">
+  <div class="card card-side bg-base-100 shadow-xl mb-1" style="opacity: 0.8;">
     <figure>
-      <img :src="imgUrl" alt="image" class="img-responsive rounded-xl w-36 h-32 object-cover" />
+      <img :src="imgUrl" alt="image" class="img-responsive rounded-xl w-36 h-36 object-cover" />
     </figure>
-    <div class="card-body h-32" style="width: 45rem;">
-      <h2 class="card-title">{{ title }}</h2>
-      <p>{{ summary }}</p>
-      <p class="overflow-ellipsis">{{ content }}</p>
+    <div class="card-body h-36" style="width: 45rem;gap:0">
+      <h2 class="card-title relative">{{ title }}
+        <div class="absolute right-0 float-start">
+          <span class="float-left badge badge-outline mr-2" :class="`badge-${tag.color}`" v-for="tag in tags">{{
+        tag.text
+      }}</span>
+        </div>
+      </h2>
+      <p class="text-sm text-gray-500">{{ author }} | {{ date }}</p>
+      <p class="truncate overflow-hidden max-w-lg max-h-8 text-left">{{ content }}</p>
     </div>
   </div>
 </template>
