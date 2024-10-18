@@ -9,7 +9,7 @@ export default function useAction() {
   // 参数
 
   // 定义星星的颜色
-  const STAR_COLOR = '#B4C8ED';
+  const STAR_COLOR = '#FEFEFE';
   // 定义星星的大小
   const STAR_SIZE = 2;
   // 定义星星的最小缩放比例

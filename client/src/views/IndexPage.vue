@@ -2,12 +2,8 @@
 
 <script setup>
 import { onMounted } from 'vue'
-import useAction from './IndexPage.js'
 
 onMounted(() => {
-  // 组件挂载后添加插入canvas
-  const createCanvas = useAction()
-  createCanvas(document.getElementById('useAction'))
 
 })
 </script>

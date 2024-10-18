@@ -6,19 +6,20 @@ import { useThemeStore } from '@/store/theme.js'
 
 const themeStore = useThemeStore()
 const isDark = computed(() => themeStore.isDark)
-
+const theme = computed(() => themeStore.theme)
 function toggleTheme() {
   themeStore.swapTheme()
+  window.localStorage.setItem('theme', theme.value)
 }
 </script>
 
 <template>
-  <div class="navbar bg-base-100">
+  <div class="navbar bg-base-100" style="opacity: 0.8;position: fixed;top: 0;left: 0;right: 0;z-index: 1000;">
     <div class="navbar-start">
       <a class="btn btn-ghost text-xl">daisyUI</a>
     </div>
     <div class="navbar-center" style="user-select: none;">
-      <div class="form-control">
+      <div class="form-control w-20" style="width: 25rem;">
         <input type="text" placeholder="Search Article" class="input input-bordered w-24 md:w-auto bd-r"
           style="border-radius: 1.5rem" />
       </div>
