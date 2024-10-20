@@ -11,10 +11,11 @@ export const tempArticles = [
     author: "张三", // 文章作者
     date: "2021-07-01 12:00:00", // 文章发布日期
     tags: [
-      { text: "Vue", color: "default" },
-      { text: "DaisyUI", color: "info" },
-      { text: "博客", color: "accent" }
+      { text: "Vue", color: "badge-success" },
+      { text: "DaisyUI", color: "badge-info" },
+      { text: "博客", color: "badge-accent" }
     ],
+    views: 1000, // 文章阅读数
     imgUrl: "https://npm.elemecdn.com/ushio-api-img-moe@5.0.98/img_981_991x872_96_null_normal.jpg" // 文章配图
   },
   {
@@ -25,12 +26,13 @@ export const tempArticles = [
     date: "2021-07-02 12:00:00",
 
     // 最多添加3个标签
-    // 颜色种类: primary, secondary, accent, default, info, success, warning, error
+    // 颜色种类: badge-neutral,badge-primary,badge-secondary,badge-accent,badge-ghost,badge-info,badge-success,badge-warning,badge-error,badge-outline
     tags: [
-      { text: "React", color: "primary" },
-      { text: "Antd", color: "secondary" },
-      { text: "博客", color: "accent" }
+      { text: "React", color: "badge-primary" },
+      { text: "Antd", color: "badge-secondary" },
+      { text: "博客", color: "badge-accent" }
     ],
+    views: 500,
     imgUrl: "https://npm.elemecdn.com/ushio-api-img-moe@5.0.98/img_981_991x872_96_null_normal.jpg"
   },
   {
@@ -39,10 +41,11 @@ export const tempArticles = [
     content: "balabala...",
     date: "2021-07-03 12:00:00",
     tags: [
-      { text: "Angular", color: "success" },
-      { text: "Bootstrap", color: "warning" },
-      { text: "博客", color: "accent" }
+      { text: "Angular", color: "badge-error" },
+      { text: "Bootstrap", color: "badge-warning" },
+      { text: "博客", color: "badge-accent" }
     ],
+    views: 100,
     imgUrl: "https://npm.elemecdn.com/ushio-api-img-moe@5.0.98/img_981_991x872_96_null_normal.jpg"
   }
 ]
@@ -53,3 +56,23 @@ export const tempEssay = {
   emoji: "😂",
   date: "2021-07-03 12:00:00",
 }
+
+
+// 文章筛选菜单
+export const tempMenuTabs = [
+  { text: "全部", value: "all" },
+  { text: "按时间", value: "date" },
+  { text: "浏览量", value: "tag" },
+]
+
+// 标签筛选菜单
+export const tempTagTabs = [
+  { value: "无标签", color: "badge-neutral" },
+  { value: "Vue", color: "badge-success" },
+  { value: "React", color: "badge-primary" },
+  { value: "Antd", color: "badge-secondary" },
+  { value: "Angular", color: "badge-error" },
+  { value: "Bootstrap", color: "badge-warning" },
+  { value: "博客", color: "badge-accent" },
+
+]

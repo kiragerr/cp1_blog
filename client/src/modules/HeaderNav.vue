@@ -1,8 +1,9 @@
 <!-- 头部导航栏 -->
 
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
 import { useThemeStore } from '@/store/theme.js'
+import { useRouter } from 'vue-router'
 
 const themeStore = useThemeStore()
 const isDark = computed(() => themeStore.isDark)
@@ -11,12 +12,27 @@ function toggleTheme() {
   themeStore.swapTheme()
   window.localStorage.setItem('theme', theme.value)
 }
+const date = ref(new Date())
+const hh = computed(() => date.value.getHours())
+const mm = computed(() => date.value.getMinutes())
+const ss = computed(() => date.value.getSeconds())
+let timer = null
+
+onMounted(() => {
+  timer = setInterval(() => {
+    date.value = new Date()
+  }, 1000)
+})
+
+onBeforeUnmount(() => {
+  clearInterval(timer)
+})
 </script>
 
 <template>
   <div class="navbar bg-base-100" style="opacity: 0.8;position: fixed;top: 0;left: 0;right: 0;z-index: 1000;">
     <div class="navbar-start">
-      <a class="btn btn-ghost text-xl">daisyUI</a>
+      <a class="btn btn-ghost text-xl" @click="$router.push('/')">Kiragerr's Blog</a>
     </div>
     <div class="navbar-center" style="user-select: none;">
       <div class="form-control w-20" style="width: 25rem;">
@@ -25,6 +41,14 @@ function toggleTheme() {
       </div>
     </div>
     <div class="navbar-end">
+      <span class="countdown font-mono text-2xl mr-32">
+
+        <span :style="`--value:${hh};`"></span>
+        :
+        <span :style="`--value:${mm};`"></span>
+        :
+        <span :style="`--value:${ss};`"></span>
+      </span>
       <label class="swap swap-rotate">
         <!-- this hidden checkbox controls the state -->
         <input type="checkbox" @change="toggleTheme" :checked="!isDark" />
@@ -42,7 +66,7 @@ function toggleTheme() {
         </svg>
       </label>
       <div class="flex-none">
-        <button class="btn btn-square btn-ghost">
+        <button class="btn btn-square btn-ghost mr-2">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
             class="inline-block h-5 w-5 stroke-current">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
